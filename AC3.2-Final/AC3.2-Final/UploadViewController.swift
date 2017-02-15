@@ -16,9 +16,10 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
-    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var commentTextViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    
+    var commentTextViewBottomConstraint: NSLayoutConstraint?
     
     var databaseReference: FIRDatabaseReference!
     var user: FIRUser?
@@ -156,21 +157,25 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            scrollViewBottomConstraint.isActive = false
+            scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -keyboardSize.height)
+            scrollViewBottomConstraint.isActive = true
             
-            commentTextViewBottomConstraint.isActive = false
-            commentTextViewBottomConstraint = commentTextView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: -keyboardSize.height)
-            commentTextViewBottomConstraint.isActive = true
-            
-//            scrollViewBottomConstraint.isActive = false
-//            scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: -keyboardSize.height)
-//            scrollViewBottomConstraint.isActive = true
+//            commentTextViewBottomConstraint?.isActive = false
+//            commentTextViewBottomConstraint = commentTextView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -keyboardSize.height)
+//            commentTextViewBottomConstraint?.isActive = true
+//            
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        commentTextViewBottomConstraint.isActive = false
-        commentTextViewBottomConstraint = commentTextView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor)
-        commentTextViewBottomConstraint.isActive = true    }
+        scrollViewBottomConstraint.isActive = false
+        scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor)
+        scrollViewBottomConstraint.isActive = true
+    
+//        commentTextViewBottomConstraint?.isActive = false
+    }
+    
     
     func dismissKeyboard() {
         view.endEditing(true)

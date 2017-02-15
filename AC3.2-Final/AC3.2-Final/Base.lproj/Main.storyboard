@@ -179,10 +179,10 @@
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bud-9I-kBv">
-                                        <rect key="frame" x="8" y="383" width="359" height="100"/>
+                                        <rect key="frame" x="8" y="383" width="359" height="120"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="100" id="w0a-C6-OPr"/>
+                                            <constraint firstAttribute="height" constant="120" id="m6a-Zw-qaG"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
@@ -192,7 +192,7 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="bud-9I-kBv" secondAttribute="bottom" id="APf-ud-Sim"/>
+                                    <constraint firstAttribute="bottom" secondItem="bud-9I-kBv" secondAttribute="bottom" constant="8" id="APf-ud-Sim"/>
                                     <constraint firstItem="9eX-QH-N9S" firstAttribute="leading" secondItem="Khr-e0-8AB" secondAttribute="leading" id="HKX-rs-cQX"/>
                                     <constraint firstItem="bud-9I-kBv" firstAttribute="top" secondItem="9eX-QH-N9S" secondAttribute="bottom" constant="8" id="LYR-ym-a8z"/>
                                     <constraint firstItem="bud-9I-kBv" firstAttribute="leading" secondItem="Khr-e0-8AB" secondAttribute="leadingMargin" id="SLg-s7-833"/>
@@ -203,6 +203,9 @@
                             </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiO-Ew-VxP">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="sPM-EH-mUf"/>
+                                </constraints>
                                 <items>
                                     <navigationItem title="Title" id="Z5G-qZ-2M0">
                                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="eFz-KP-vIN">
@@ -218,21 +221,24 @@
                         <constraints>
                             <constraint firstItem="Khr-e0-8AB" firstAttribute="top" secondItem="LiO-Ew-VxP" secondAttribute="bottom" id="38q-dy-0wg"/>
                             <constraint firstItem="LiO-Ew-VxP" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="7IH-RL-4Ti"/>
+                            <constraint firstAttribute="trailing" secondItem="LiO-Ew-VxP" secondAttribute="trailing" id="BOk-gd-8eC"/>
                             <constraint firstAttribute="trailing" secondItem="Khr-e0-8AB" secondAttribute="trailing" id="I5x-LP-2c2"/>
                             <constraint firstItem="Khr-e0-8AB" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="Izn-7W-y6V"/>
+                            <constraint firstItem="Khr-e0-8AB" firstAttribute="top" secondItem="LiO-Ew-VxP" secondAttribute="bottom" id="KuS-Vh-LGZ"/>
                             <constraint firstItem="LiO-Ew-VxP" firstAttribute="top" secondItem="P1C-tj-WFA" secondAttribute="bottom" id="Z5p-vK-T9e"/>
+                            <constraint firstItem="LiO-Ew-VxP" firstAttribute="top" secondItem="P1C-tj-WFA" secondAttribute="bottom" id="cNI-rE-8Sc"/>
+                            <constraint firstItem="LiO-Ew-VxP" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="fbW-Gs-rtj"/>
                             <constraint firstAttribute="trailing" secondItem="LiO-Ew-VxP" secondAttribute="trailing" id="mSs-eT-JKO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9eX-QH-N9S" secondAttribute="trailing" constant="-16" id="rcJ-mo-JLI"/>
                             <constraint firstItem="pu5-2i-63h" firstAttribute="top" secondItem="Khr-e0-8AB" secondAttribute="bottom" id="sN2-Xg-EWo"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="kXq-A9-v8u"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="upload" id="kXq-A9-v8u"/>
                     <connections>
-                        <outlet property="commenTextViewBottomConstraint" destination="APf-ud-Sim" id="bmk-wd-du5"/>
                         <outlet property="commentTextView" destination="bud-9I-kBv" id="maY-7P-Ai6"/>
                         <outlet property="photoImageView" destination="9eX-QH-N9S" id="i4x-gi-mad"/>
                         <outlet property="scrollView" destination="Khr-e0-8AB" id="bj8-zY-h60"/>
-                        <outlet property="scrollViewBottomConstraint" destination="sN2-Xg-EWo" id="kJl-6B-51o"/>
+                        <outlet property="scrollViewBottomConstraint" destination="sN2-Xg-EWo" id="NH7-87-kGi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBm-en-qc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,7 +268,7 @@
         <scene sceneID="kJ1-vL-8lk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7gf-Vt-Sg1" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="BMd-t5-4Jk"/>
+                    <tabBarItem key="tabBarItem" title="Item" image="chickenleg" id="BMd-t5-4Jk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bGl-bg-gET">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -280,6 +286,8 @@
     </scenes>
     <resources>
         <image name="camera_icon" width="60" height="55"/>
+        <image name="chickenleg" width="75" height="76"/>
         <image name="meatly_logo" width="171" height="152"/>
+        <image name="upload" width="44" height="44"/>
     </resources>
 </document>

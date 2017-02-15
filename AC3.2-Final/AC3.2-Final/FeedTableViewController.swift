@@ -20,6 +20,8 @@ class FeedTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         self.databaseReference = FIRDatabase.database().reference().child("posts")
         getPosts()
+        
+        self.tabBarItem.image = #imageLiteral(resourceName: "chickenleg")
     }
     
     override func viewDidAppear(_ animated: Bool) {
