@@ -63,10 +63,16 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         print("done button pressed")
         guard let image = self.photoImageView.image,
             image != #imageLiteral(resourceName: "camera_icon"),
-
+            
             commentTextView.text != nil
             else {
-            return
+                
+                
+                let errorAlertController = UIAlertController(title: "Please add an image before continuing", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let okay = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+                errorAlertController.addAction(okay)
+                self.present(errorAlertController, animated: true, completion: nil)
+                return
         }
         uploadImage(image: image)
     }
@@ -150,6 +156,16 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 print(error.localizedDescription)
             } else {
                 print("Reference is \(reference)")
+                
+                self.photoImageView.image = #imageLiteral(resourceName: "camera_icon")
+                self.photoImageView.contentMode = .center
+                self.photoImageView.backgroundColor = UIColor.groupTableViewBackground
+                
+                self.commentTextView.text = "Add a description..."
+                self.commentTextView.textColor = UIColor.groupTableViewBackground
+                self.commentTextView.layer.borderWidth = 1.0
+                self.commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+                
                 self.tabBarController?.selectedIndex = 0
             }
         })
