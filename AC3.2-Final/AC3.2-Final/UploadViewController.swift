@@ -84,12 +84,20 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         metadata.contentType = "image/jpeg";
         
         let _ = storageRef.put(jpeg, metadata: metadata) { (metadata, error) in
-            guard metadata != nil else {
-                print("put error")
+            guard error == nil else {
+                let errorAlertController = UIAlertController(title: "Upload Failed!", message: error?.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
+                let okay = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+                errorAlertController.addAction(okay)
+                self.present(errorAlertController, animated: true, completion: nil)
                 return
             }
+            
+            let successAlertController = UIAlertController(title: "Photo Uploaded", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            successAlertController.addAction(okay)
+            self.present(successAlertController, animated: true, completion: nil)
         }
-        
+    
         databaseChild.setValue(["comment" : commentTextView.text!, "userId" : user?.uid], withCompletionBlock: { (error, reference) in
             if let error = error {
                 print(error.localizedDescription)

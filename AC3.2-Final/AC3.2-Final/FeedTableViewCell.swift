@@ -11,12 +11,12 @@ import UIKit
 class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var photoImageView: UIImageView!
-    
     @IBOutlet weak var commentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        photoImageView.layer.borderColor = UIColor.lightGray.cgColor
+        photoImageView.layer.borderWidth = 0.25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
