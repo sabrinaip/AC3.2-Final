@@ -12,10 +12,13 @@ import AVKit
 import Firebase
 
 
-class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var commentTextViewBottomConstraint: NSLayoutConstraint!
     
     var databaseReference: FIRDatabaseReference!
     var user: FIRUser?
@@ -28,14 +31,27 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: - Setup Views
     
     func setup() {
+        self.databaseReference = FIRDatabase.database().reference().child("posts")
+        self.user = FIRAuth.auth()?.currentUser
+        
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         photoImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: .UIKeyboardWillHide, object: nil)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
         photoImageView.image = #imageLiteral(resourceName: "camera_icon")
         photoImageView.contentMode = .center
+        photoImageView.backgroundColor = UIColor.groupTableViewBackground
         
-        self.databaseReference = FIRDatabase.database().reference().child("posts")
-        self.user = FIRAuth.auth()?.currentUser
+        commentTextView.text = "Add a description..."
+        commentTextView.textColor = UIColor.groupTableViewBackground
+        commentTextView.layer.borderWidth = 1.0
+        commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        
     }
 
     // MARK: - Actions
@@ -58,6 +74,34 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         imagePickerController.sourceType = .photoLibrary
         imagePickerController.delegate = self
         self.present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // MARK: - TextView Delegate
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Add a description..." {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+
+        
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        if textView.text.isEmpty {
+            textView.text = "Add a description..."
+            textView.textColor = UIColor.groupTableViewBackground
+        }
+        return true
+    }
+
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Add a description..."
+            textView.textColor = UIColor.groupTableViewBackground
+        }
     }
     
     // MARK: - UIImagePickerControllerDelegate
@@ -108,4 +152,27 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         })
     }
     
+    // MARK: - Keyboard functions
+    
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            
+            commentTextViewBottomConstraint.isActive = false
+            commentTextViewBottomConstraint = commentTextView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: -keyboardSize.height)
+            commentTextViewBottomConstraint.isActive = true
+            
+//            scrollViewBottomConstraint.isActive = false
+//            scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor, constant: -keyboardSize.height)
+//            scrollViewBottomConstraint.isActive = true
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        commentTextViewBottomConstraint.isActive = false
+        commentTextViewBottomConstraint = commentTextView.bottomAnchor.constraint(equalTo: self.bottomLayoutGuide.topAnchor)
+        commentTextViewBottomConstraint.isActive = true    }
+    
+    func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

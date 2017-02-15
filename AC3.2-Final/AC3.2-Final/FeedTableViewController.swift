@@ -15,6 +15,7 @@ class FeedTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Unit6Final-staGram"
         tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
         self.databaseReference = FIRDatabase.database().reference().child("posts")
@@ -39,7 +40,7 @@ class FeedTableViewController: UITableViewController {
     func getPosts() {
         databaseReference.observeSingleEvent(of: .value, with: { (snapshot) in
             var newPosts: [(imageName: String, comment: String)] = []
-            for child in snapshot.children {
+            for child in snapshot.children.reversed() {
                 if let snap = child as? FIRDataSnapshot,
                     let valueDict = snap.value as? [String:String] {
                     let imageName = snap.key

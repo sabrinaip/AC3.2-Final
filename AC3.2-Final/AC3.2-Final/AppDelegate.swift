@@ -19,13 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
 
         // signs user out, just for testing purposes - to be deleted
-        let firebaseAuth = FIRAuth.auth()
-        do {
-            try firebaseAuth?.signOut()
-            }
-        catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+//        let firebaseAuth = FIRAuth.auth()
+//        do {
+//            try firebaseAuth?.signOut()
+//            }
+//        catch let signOutError as NSError {
+//            print ("Error signing out: %@", signOutError)
+//        }
 
         
         return true

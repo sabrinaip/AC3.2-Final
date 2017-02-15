@@ -52,7 +52,6 @@ class LoginViewController: UIViewController {
 */
             self.dismiss(animated: true, completion: nil)
         })
-
     }
 
     @IBAction func registerButtonPressed(_ sender: UIButton) {

@@ -168,22 +168,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9eX-QH-N9S">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Khr-e0-8AB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <subviews>
+                                    <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera_icon" translatesAutoresizingMaskIntoConstraints="NO" id="9eX-QH-N9S">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="9eX-QH-N9S" secondAttribute="height" multiplier="1:1" id="QbC-kM-STQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bud-9I-kBv">
+                                        <rect key="frame" x="8" y="383" width="359" height="100"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="w0a-C6-OPr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="NvU-wf-CkW" id="E6L-Tw-hjq"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="9eX-QH-N9S" secondAttribute="height" multiplier="1:1" id="QbC-kM-STQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="bud-9I-kBv" secondAttribute="bottom" id="APf-ud-Sim"/>
+                                    <constraint firstItem="9eX-QH-N9S" firstAttribute="leading" secondItem="Khr-e0-8AB" secondAttribute="leading" id="HKX-rs-cQX"/>
+                                    <constraint firstItem="bud-9I-kBv" firstAttribute="top" secondItem="9eX-QH-N9S" secondAttribute="bottom" constant="8" id="LYR-ym-a8z"/>
+                                    <constraint firstItem="bud-9I-kBv" firstAttribute="leading" secondItem="Khr-e0-8AB" secondAttribute="leadingMargin" id="SLg-s7-833"/>
+                                    <constraint firstItem="9eX-QH-N9S" firstAttribute="top" secondItem="Khr-e0-8AB" secondAttribute="top" id="Wi1-3D-5pj"/>
+                                    <constraint firstItem="bud-9I-kBv" firstAttribute="trailing" secondItem="Khr-e0-8AB" secondAttribute="trailingMargin" id="ZoY-T2-i9m"/>
+                                    <constraint firstAttribute="trailing" secondItem="9eX-QH-N9S" secondAttribute="trailing" id="fdq-nK-Tf3"/>
                                 </constraints>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Add a description" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="bud-9I-kBv">
-                                <rect key="frame" x="16" y="447" width="343" height="171"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="NvU-wf-CkW" id="E6L-Tw-hjq"/>
-                                </connections>
-                            </textView>
+                            </scrollView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiO-Ew-VxP">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
@@ -199,22 +216,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Khr-e0-8AB" firstAttribute="top" secondItem="LiO-Ew-VxP" secondAttribute="bottom" id="38q-dy-0wg"/>
                             <constraint firstItem="LiO-Ew-VxP" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="7IH-RL-4Ti"/>
-                            <constraint firstItem="bud-9I-kBv" firstAttribute="trailing" secondItem="h3E-Cl-RHK" secondAttribute="trailingMargin" id="87X-FW-CmA"/>
-                            <constraint firstAttribute="trailing" secondItem="9eX-QH-N9S" secondAttribute="trailing" id="AjD-cz-nQR"/>
-                            <constraint firstItem="9eX-QH-N9S" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="Jdh-zL-OaU"/>
+                            <constraint firstAttribute="trailing" secondItem="Khr-e0-8AB" secondAttribute="trailing" id="I5x-LP-2c2"/>
+                            <constraint firstItem="Khr-e0-8AB" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leading" id="Izn-7W-y6V"/>
                             <constraint firstItem="LiO-Ew-VxP" firstAttribute="top" secondItem="P1C-tj-WFA" secondAttribute="bottom" id="Z5p-vK-T9e"/>
-                            <constraint firstItem="9eX-QH-N9S" firstAttribute="top" secondItem="LiO-Ew-VxP" secondAttribute="bottom" id="jA5-wP-8ET"/>
                             <constraint firstAttribute="trailing" secondItem="LiO-Ew-VxP" secondAttribute="trailing" id="mSs-eT-JKO"/>
-                            <constraint firstItem="bud-9I-kBv" firstAttribute="top" secondItem="9eX-QH-N9S" secondAttribute="bottom" constant="8" id="nqq-c7-hNf"/>
-                            <constraint firstItem="pu5-2i-63h" firstAttribute="top" secondItem="bud-9I-kBv" secondAttribute="bottom" id="od5-Nn-qA4"/>
-                            <constraint firstItem="bud-9I-kBv" firstAttribute="leading" secondItem="h3E-Cl-RHK" secondAttribute="leadingMargin" id="uhD-1a-mZ0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9eX-QH-N9S" secondAttribute="trailing" constant="-16" id="rcJ-mo-JLI"/>
+                            <constraint firstItem="pu5-2i-63h" firstAttribute="top" secondItem="Khr-e0-8AB" secondAttribute="bottom" id="sN2-Xg-EWo"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="kXq-A9-v8u"/>
                     <connections>
+                        <outlet property="commenTextViewBottomConstraint" destination="APf-ud-Sim" id="bmk-wd-du5"/>
                         <outlet property="commentTextView" destination="bud-9I-kBv" id="maY-7P-Ai6"/>
                         <outlet property="photoImageView" destination="9eX-QH-N9S" id="i4x-gi-mad"/>
+                        <outlet property="scrollView" destination="Khr-e0-8AB" id="bj8-zY-h60"/>
+                        <outlet property="scrollViewBottomConstraint" destination="sN2-Xg-EWo" id="kJl-6B-51o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iBm-en-qc2" userLabel="First Responder" sceneMemberID="firstResponder"/>

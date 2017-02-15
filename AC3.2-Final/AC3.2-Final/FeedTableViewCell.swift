@@ -15,8 +15,9 @@ class FeedTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        photoImageView.layer.borderColor = UIColor.lightGray.cgColor
-        photoImageView.layer.borderWidth = 0.25
+        photoImageView.backgroundColor = UIColor.groupTableViewBackground
+//        photoImageView.layer.borderColor = UIColor.lightGray.cgColor
+//        photoImageView.layer.borderWidth = 0.25
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
