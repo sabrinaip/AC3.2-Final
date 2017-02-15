@@ -32,6 +32,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     // MARK: - Setup Views
     
     func setup() {
+        self.title = "Upload"
+        
         self.databaseReference = FIRDatabase.database().reference().child("posts")
         self.user = FIRAuth.auth()?.currentUser
         
